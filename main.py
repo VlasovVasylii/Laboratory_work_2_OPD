@@ -28,7 +28,7 @@ async def start(message: types.Message):
 
 
 # Обработчики ввода
-@dp.message_handler(lambda message: not message.text.isdigit() and 1 <= int(message.text) <= 100, state=GuessGame.guess)
+@dp.message_handler(lambda message: not message.text.isdigit() or int(message.text) < 1 or int(message.text) > 100, state=GuessGame.guess)
 async def wrong_input(message: types.Message, state: FSMContext):
     await message.answer("Неправильно! Это должно быть число от 1 до 100.")
 
